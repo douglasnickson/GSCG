@@ -50,6 +50,18 @@
                 </td>
             </tr>
         </table>
+        	<!-- Mensagens de Erro ou Sucesso -->
+			<?php 
+				if(isset($_GET['erro'])){
+					$msg_erro = $_GET['erro'];
+                    echo"<div class='alert alert-danger' style='text-align:center;' role='alert'>".$msg_erro."</div>";
+                    unset($_GET['erro']);
+				} else if (isset($_GET['sucesso'])) {
+                    $msg_sucesso = $_GET['sucesso'];
+                    echo"<div class='alert alert-success' style='text-align:center;' role='alert'>".$msg_sucesso."</div>";
+                    unset($_GET['sucesso']);
+                }
+			?>
     </div>
     <script defer src="../fontawesome/svg-with-js/js/fontawesome-all.js"></script>
 </body>

@@ -18,6 +18,7 @@
 <body>
     <div class="container cadastro-info">
         <form action="acoes.php" method="post">
+            <input type="hidden" name="tipo_formulario" value="1">
             <div class="row">
                 <div class="col-sm-6">
                     <h4>Endereço da Empresa</h4>
