@@ -1,3 +1,9 @@
+<?php 
+session_start();
+if (isset($_SESSION['logado'])){
+    include("../connection.php");
+  }
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -16,6 +22,9 @@
     <![endif]-->
 </head>
 <body>
+<?php 
+    if (isset($_SESSION['logado'])){
+?>
     <div class="container cadastro-info">
         <h4 style="text-align:center;">Seja bem vindo ao Sistema ADM.</h4>		
         <hr>
@@ -29,40 +38,42 @@
                 <td><b>Tel Celular</b></td>
                 <td><b>Ações</b></td>
             </tr>
-            <tr>
-                <td>1111111</td>
-                <td>Teste</td>
-                <td>9999999</td>
-                <td>8888888</td>
-                <td>
-                    <a href="atualizar.php"><i class="fas fa-pencil-alt"></i></a>
-                    <a href="deletar.php"><i class="fas fa-minus-circle"></i></a>
-                </td>
-            </tr>
-            <tr>
-                <td>1111111</td>
-                <td>Teste</td>
-                <td>9999999</td>
-                <td>8888888</td>
-                <td>
-                    <a href="atualizar.php"><i class="fas fa-pencil-alt"></i></a>
-                    <a href="deletar.php"><i class="fas fa-minus-circle"></i></a>
-                </td>
-            </tr>
+            <?php
+            $query = mysqli_query ($conn, "select * from tb_empresa");
+            while ($result = mysqli_fetch_array($query)) {
+                echo "<tr>
+                    <td>".$result['cnpj']."</td>
+                    <td>".$result['nome']."</td>
+                    <td>".$result['tel_fixo']."</td>
+                    <td>".$result['tel_celular']."</td>
+                    <td>
+                        <a href='atualizar.php'><i class='fas fa-pencil-alt'></i></a>
+                        <a href='deletar.php'><i class='fas fa-minus-circle'></i></a>
+                    </td>
+                </tr>";
+            }
+            ?>
         </table>
+            <p><a href="acoes.php?sair=ok"><b>Sair</b></a></p>
         	<!-- Mensagens de Erro ou Sucesso -->
 			<?php 
-				if(isset($_GET['erro'])){
-					$msg_erro = $_GET['erro'];
+				if(isset($_SESSION['erro'])){
+					$msg_erro = $_SESSION['erro'];
                     echo"<div class='alert alert-danger' style='text-align:center;' role='alert'>".$msg_erro."</div>";
-                    unset($_GET['erro']);
-				} else if (isset($_GET['sucesso'])) {
-                    $msg_sucesso = $_GET['sucesso'];
+                    unset($_SESSION['erro']);
+				} else if (isset($_SESSION['sucesso'])) {
+                    $msg_sucesso = $_SESSION['sucesso'];
                     echo"<div class='alert alert-success' style='text-align:center;' role='alert'>".$msg_sucesso."</div>";
-                    unset($_GET['sucesso']);
+                    unset($_SESSION['sucesso']);
                 }
 			?>
     </div>
-    <script defer src="../fontawesome/svg-with-js/js/fontawesome-all.js"></script>
+<?php 
+    } else {
+        $_SESSION['erro'] = "Faça o login para acessar o sistema!";
+        header("Location: login.php");
+    }
+?>
+<script defer src="../fontawesome/svg-with-js/js/fontawesome-all.js"></script>
 </body>
 </html>

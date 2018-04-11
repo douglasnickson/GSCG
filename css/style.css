@@ -13,6 +13,11 @@ body {
 
 }
 
+#map {
+	height:600px;
+	width:100%;
+}
+
 .cadastro-info {
 	margin-top: 10px;
 	border: 1px solid #ccc;

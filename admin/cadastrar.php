@@ -1,3 +1,6 @@
+<?php 
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -16,9 +19,12 @@
     <![endif]-->
 </head>
 <body>
+    <?php 
+        if (isset($_SESSION['logado'])){
+    ?>
     <div class="container cadastro-info">
         <form action="acoes.php" method="post">
-            <input type="hidden" name="tipo_formulario" value="1">
+            <input type="hidden" name="tipo_formulario" value="2">
             <div class="row">
                 <div class="col-sm-6">
                     <h4>Endereço da Empresa</h4>
@@ -38,7 +44,7 @@
                     <div class="form-group">
                         <label for="estado">Estado:</label>
                         <select class="custom-select mr-sm-2 mb-2" name="estado" id="estado">
-                            <option value="1">PB</option>
+                            <option value="PB">PB</option>
                         </select>
                     </div> 
                     <div class="form-group">
@@ -62,10 +68,6 @@
                         <input type="text" class="form-control" id="nome_fantasia" name="nome_fantasia"  placeholder="Digite o nome fantasaia da empresa" required>
                     </div>  
                     <div class="form-group">
-                        <label for="email">E-Mail:</label>
-                        <input type="text" class="form-control" id="email" name="email" placeholder="Digite o e-mail da empresa" required>
-                    </div>  
-                    <div class="form-group">
                         <label for="tel_fixo">Telefone Fixo:</label>
                         <input type="text" class="form-control" id="tel_fixo" name="tel_fixo" placeholder="Digite o telefone fixo" required>
                     </div>
@@ -85,6 +87,14 @@
             </div>
         </form>
     </div>
+    <?php 
+
+    } else {
+        $_SESSION['erro'] = "Faça o login para acessar o sistema!";
+        header("Location: login.php");
+    }
+
+    ?>
 <!-- Scripts do JS -->
 <script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="../bootstrap/js/bootstrap.min.js"></script>

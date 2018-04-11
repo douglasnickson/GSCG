@@ -1,3 +1,6 @@
+<?php 
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -16,6 +19,9 @@
     <![endif]-->
 </head>
 <body>
+    <?php 
+        if (isset($_SESSION['logado'])){
+    ?>
     <div class="container cadastro-info">
         <form action="acoes.php" method="post">
             <div class="row">
@@ -84,6 +90,14 @@
             </div>
         </form>
     </div>
+    <?php 
+
+    } else {
+        $_SESSION['erro'] = "Faça o login para acessar o sistema!";
+        header("Location: login.php");
+    }
+
+?>
 <!-- Scripts do JS -->
 <script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="../bootstrap/js/bootstrap.min.js"></script>

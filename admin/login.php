@@ -1,3 +1,7 @@
+<?php 
+	session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -36,7 +40,14 @@
 		    </form>
 			<br />
 			<div id="resultado"></div>
-			<!-- Mensagens de Erro ou Sucesso -->
+				<!-- Mensagens de Erro ou Sucesso -->
+				<?php 
+				if(isset($_SESSION['erro'])){
+					$msg_erro = $_SESSION['erro'];
+                    echo"<div class='alert alert-danger' style='text-align:center;' role='alert'>".$msg_erro."</div>";
+                    unset($_SESSION['erro']);
+				}
+			?>
 		</div>   
 	</div>  
 </div>
