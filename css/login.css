@@ -1,0 +1,61 @@
+@import 'https://fonts.googleapis.com/css?family=Lato:400,700';
+
+html, body {
+	height: 100%;
+	font-family: 'Lato', sans-serif !important;
+	background: url(../images/bg-login.jpg) center center fixed;
+	background-size: cover;
+}
+
+ul, li {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+a, a:hover{text-decoration: none !important;}
+
+.header{
+	float: left;
+	width: 100%;
+	text-align: center;
+	color: #fff;
+}
+
+.header h1{
+	display: inline-block;
+	margin: 35px 0;
+}
+
+.main{
+	float: left;
+	width: 100%;
+	text-align: center;
+}
+
+.main p{
+	color: #fff;
+}
+
+.main form input{
+	float: left;
+	width: 100%;
+	padding: 10px;
+	border-radius: 5px;
+	border: none;
+	margin-bottom: 10px;
+}
+
+.main form button{
+	float: left;
+	width: 100%;
+	padding: 10px;
+	border-radius: 5px;
+	border: none;
+	background: #4fb2f0;
+	color: #fff;
+}
+
+.main form button:hover{
+	opacity: 0.9;
+}

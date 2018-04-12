@@ -2,6 +2,7 @@
 session_start();
 if (isset($_SESSION['logado'])){
     include("../connection.php");
+    include("../funcoes.php");
   }
 ?>
 <!DOCTYPE html>
@@ -29,11 +30,13 @@ if (isset($_SESSION['logado'])){
         <h4 style="text-align:center;">Seja bem vindo ao Sistema ADM.</h4>		
         <hr>
         <a href="cadastrar.php"><button type="submit" class="btn btn-lg btn-info" id="enviar">Cadastrar Empresa</button></a>
+        <a href="acoes.php?sair=ok"><button type="submit" class="btn btn-lg btn-success" id="enviar">Sair do Sistema</button></a>
         <br><br>	
         <table class="table table-sm table-hover admin-home" style="color: grey;">
             <tr>
                 <td><b>CNPJ</b></td>
                 <td><b>Nome</b></td>
+                <td><b>Nome Fantasia</b></td>
                 <td><b>Tel Fixo</b></td>
                 <td><b>Tel Celular</b></td>
                 <td><b>Ações</b></td>
@@ -42,19 +45,19 @@ if (isset($_SESSION['logado'])){
             $query = mysqli_query ($conn, "select * from tb_empresa");
             while ($result = mysqli_fetch_array($query)) {
                 echo "<tr>
-                    <td>".$result['cnpj']."</td>
+                    <td>".mask($result['cnpj'],'##.###.###/####-##')."</td>
                     <td>".$result['nome']."</td>
-                    <td>".$result['tel_fixo']."</td>
-                    <td>".$result['tel_celular']."</td>
+                    <td>".$result['nome_fantasia']."</td>
+                    <td>".mask($result['tel_fixo'], '####-####')."</td>
+                    <td>".mask($result['tel_celular'], '(##) #####-####')."</td>
                     <td>
-                        <a href='atualizar.php'><i class='fas fa-pencil-alt'></i></a>
-                        <a href='deletar.php'><i class='fas fa-minus-circle'></i></a>
+                        <a href='atualizar.php?tipo_formulario=3&id=".$result['id']."'><i class='fas fa-pencil-alt'></i></a>
+                        <a href='acoes.php?tipo_formulario=4&id=".$result['id']."'><i class='fas fa-minus-circle'></i></a>
                     </td>
                 </tr>";
             }
             ?>
         </table>
-            <p><a href="acoes.php?sair=ok"><b>Sair</b></a></p>
         	<!-- Mensagens de Erro ou Sucesso -->
 			<?php 
 				if(isset($_SESSION['erro'])){

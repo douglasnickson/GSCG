@@ -1,5 +1,6 @@
 <?php 
 include ("connection.php");
+include ("funcoes.php");
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -74,18 +75,25 @@ include ("connection.php");
        }
 
         var locations = [
-            <?php 
+        <?php 
             $sql = mysqli_query($conn, "select * from tb_endereco");
             while ($result = mysqli_fetch_array($sql)) {
-                $endero = $result['rua'].','.$result['nr'].','.$result['cidade'].','.$result['estado'].','.$result['pais'];
-                echo "'".(string) $endero."',";
+                $endereco = $result['rua'].','.$result['nr'].','.$result['cidade'].','.$result['estado'].','.$result['pais'];
+                echo "'".(string) $endereco."',";
             }
-            ?>
+        ?>
         ];
 
         var content = [
-            '<b>CICATRIZA - SERVIÇO EM SAÚDE LTDA - EPP</b><br><b>CNPJ:</b> 14.077.926/0001-90<br><b>Tel. Fixo:</b> (83) 3065-1777<br><b>Tel.Celular:</b> Marina Sousa (83) 9.9942-8034<br><b>E-mail:</b> compras@cicatrizacg.com.br',
-            '<b>CLÍNICA DE FRATURAS </b><br><b>CNPJ:</b> 70.100.912/0001-10<br><b>Tel. Fixo:</b> 3321-0493<br><b>Tel. Celular:</b> Bruno Brilhante 9.8163-6383<br><b>E-mail:</b> brunobrilhante@gmail.com',
+        <?php 
+            $sql = mysqli_query($conn, "select * from tb_empresa");
+            $count = 1;
+            while ($result = mysqli_fetch_array($sql)) {
+                $dados = "<br><b>".$count." - ".strtoupper($result['nome'])."</b><br><b>CNPJ: </b>".mask($result['cnpj'],'##.###.###/####-##')."</div><br><b>Tel. Fixo: </b>".mask($result['tel_fixo'], '####-####')."<br><b>Tel.Celular: </b>".mask($result['tel_celular'], '(##) #####-####')."<br>";
+                echo "'".(string) $dados."',";
+                $count+=1;
+            }
+        ?>
         ];
 
         var nextAddress = 0;

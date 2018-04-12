@@ -9,8 +9,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>GSCG - Login</title>
-    <link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <link rel="stylesheet" type="text/css" href="../bootstrap/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../css/login.css">
+	<link href="https://file.myfontastic.com/25femE7xeK8GoTXAmZ4zwY/icons.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="../css/aos.css">
+
+	<!-- scripts -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="../js/aos.js"></script>
+	<script type="text/javascript">
+		jQuery(document).ready(function ($) {
+			AOS.init({
+				easing: 'ease-out-in',
+				duration: 800
+			});
+		});
+	</script>
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -18,38 +32,43 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
-<body>
-<div class="container">
-	<div class="row justify-content-center align-items-center">
-	  	<div class="cadastro-info">
-			<hr />
-	  		<h4 style="text-align:center;">Por Favor, Faça o login para acessar o sistema.</h4>
-	  		<hr />
-		    <form method="post" action="acoes.php">
-	            <div class="form-group">
-	                <label for="login">Login:</label>
-	                <input type="text" class="form-control" id="login" name="login"  maxlength="14" placeholder="Digite o Login" required>
-	            </div>
-	            <div class="form-group">
-	                <label for="senha">Senha:</label>
-	                <input type="password" class="form-control" id="senha" name="senha" placeholder="Digite a Senha" required>
-	            </div>       
-				<br />
-				<button type="submit" class="btn btn-lg btn-block btn-info" id="enviar">Entrar</button>				
-                <input type="hidden" value="1" id="tipo_formulario" name="tipo_formulario">
-		    </form>
-			<br />
-			<div id="resultado"></div>
-				<!-- Mensagens de Erro ou Sucesso -->
-				<?php 
-				if(isset($_SESSION['erro'])){
-					$msg_erro = $_SESSION['erro'];
-                    echo"<div class='alert alert-danger' style='text-align:center;' role='alert'>".$msg_erro."</div>";
-                    unset($_SESSION['erro']);
-				}
-			?>
-		</div>   
-	</div>  
-</div>
-</body>
+<body class="main aos-all">
+        <header class="header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-offset-4 col-md-4">
+                        <a href="">
+                            <h1 data-aos="zoom-in"><img src="../images/logo-login.png"></h1>
+                        </a>
+
+                        <p data-aos="zoom-in">SIAVE - Sistema de Acompanhamento das Avaliações dos Eventos</p>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <main class="main" role="main">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-offset-4 col-md-4">
+                        <p data-aos="zoom-in">Entre com suas credenciais abaixo:</p>
+                        <form data-aos="zoom-in" action="acoes.php" method="post">
+                            <input type="text" name="login" placeholder="Usuário de rede">
+                            <input type="password" name="senha" placeholder="Senha">
+							<input type="hidden" value="1" id="tipo_formulario" name="tipo_formulario">
+                            <button type="submit">Entrar</button>
+                        </form>
+						<br />
+						<!-- Mensagens de Erro ou Sucesso -->
+						<?php 
+						if(isset($_SESSION['erro'])){
+							$msg_erro = $_SESSION['erro'];
+							echo"<p>".$msg_erro."</p>";
+							unset($_SESSION['erro']);
+						}
+						?>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </body>
 </html>
