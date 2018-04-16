@@ -24,7 +24,8 @@ switch ($acao) {
         atualizarEmpresa();
         break;
     case '4':
-        deletarEmpresa();
+        $id = $_GET['id'];
+        deletarEmpresa($id);
         break;
     case '5':
         logout();
@@ -156,7 +157,7 @@ function atualizarEmpresa () {
     }
 
     // Atualizando os dados da empresa
-    $query = mysqli_query($conn, "UPDATE tb_empresa SET cnpj='".$cnpj."', razao_social='".$nome."', nome_fantasia='".$nome_fantasia."', tel_fixo='".$tel_fixo."', tel_celular='".$tel_celular."', responsavel='".$responsavel."', email='".$email."' WHERE id = ".$id.";");
+    $query = mysqli_query($conn, "UPDATE tb_empresa SET cnpj='".$cnpj."', razao_social='".$razao_social."', nome_fantasia='".$nome_fantasia."', tel_fixo='".$tel_fixo."', tel_celular='".$tel_celular."', responsavel='".$responsavel."', email='".$email."' WHERE id = ".$id.";");
     if($query) {
         // Atualizando o endereco da empresa
         $query = mysqli_query($conn, "UPDATE tb_endereco SET rua='".$rua."', numero='".$numero."', cidade='".$cidade."', estado='".$estado."', pais='".$pais."', bairro='".$bairro."', complemento='".$complemento."' WHERE id_empresa = ".$id.";");
@@ -177,24 +178,20 @@ function atualizarEmpresa () {
     return;
 }
 
-function deletarEmpresa () {
-    session_start();
+function deletarEmpresa ($id) {
     include ("../connection.php");
-    $id = $_GET['id'];
     $query = mysqli_query($conn, "delete from tb_endereco where id_empresa = ".$id);
     if ($query) {
         $query = mysqli_query($conn, "delete from tb_empresa where id = ".$id);
         if ($query) {
-            $_SESSION ['sucesso'] = "Empresa deletada com sucesso!";
-            header ("location: index.php");
-        } else {
-            $_SESSION ['erro'] = "Erro ao deletar o endereço da empresa ".mysqli_error($conn);
-            header ("location: index.php");
+            echo "Empresa deletada com sucesso!";
+            return;
         }
-    } else {
-        $_SESSION ['erro'] = "Erro ao deletar a empresa ".mysqli_error($conn);
-        header ("location: index.php");
+        echo "Erro ao deletar o endereço da empresa ".mysqli_error($conn);
+        return;
     }
+    echo "Erro ao deletar a empresa ".mysqli_error($conn);
+    return;
 }
 
 // Funcao que remove a pontuacao do cpf

@@ -37,6 +37,7 @@ if (isset($_SESSION['logado'])){
         <br><br>	
         <table class="table table-sm table-hover admin-home" style="color: grey;">
             <tr>
+                <td><b>COD</b></td>
                 <td><b>CNPJ</b></td>
                 <td><b>Nome</b></td>
                 <td><b>Nome Fantasia</b></td>
@@ -48,19 +49,21 @@ if (isset($_SESSION['logado'])){
             $query = mysqli_query ($conn, "select * from tb_empresa");
             while ($result = mysqli_fetch_array($query)) {
                 echo "<tr>
+                    <td>".$result['id']."</td>
                     <td>".mask($result['cnpj'],'##.###.###/####-##')."</td>
-                    <td>".$result['nome']."</td>
+                    <td>".$result['razao_social']."</td>
                     <td>".$result['nome_fantasia']."</td>
                     <td>".mask($result['tel_fixo'], '####-####')."</td>
                     <td>".mask($result['tel_celular'], '(##) #####-####')."</td>
                     <td>
-                        <a href='atualizar.php?tipo_formulario=3&id=".$result['id']."'><i class='fas fa-pencil-alt'></i></a>
-                        <a href='acoes.php?tipo_formulario=4&id=".$result['id']."'><i class='fas fa-minus-circle'></i></a>
+                        <a href='atualizar.php?id=".$result['id']."'><i class='fas fa-pencil-alt'></i></a>
+                        <a href='#' onClick='onDelete(".$result['id'].");'><i class='fas fa-minus-circle'></i></a>
                     </td>
                 </tr>";
             }
             ?>
         </table>
+        <div id="resultado"></div>
         	<!-- Mensagens de Erro ou Sucesso -->
 			<?php 
 				if(isset($_SESSION['erro'])){
@@ -81,5 +84,7 @@ if (isset($_SESSION['logado'])){
     }
 ?>
 <script defer src="../fontawesome/svg-with-js/js/fontawesome-all.js"></script>
+<script defer src="../js/scripts.js"></script>
+
 </body>
 </html>

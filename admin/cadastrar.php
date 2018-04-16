@@ -28,6 +28,8 @@ session_start();
             <div class="col-sm-8"><h2 class="fonte-titulos" style="line-height:90px;">Formulário de Cadastro das Empresas</h2></div>
         </div>
         <hr>
+        <a href="index.php"><button type="submit" class="btn btn-lg btn-info" id="enviar">Home</button></a>
+        <hr>
         <form action="acoes.php" method="post">
             <input type="hidden" name="acao" value="2">
             <div class="row">

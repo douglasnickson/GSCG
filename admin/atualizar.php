@@ -26,11 +26,50 @@ include ("../connection.php");
         $query = mysqli_query($conn, "select * from tb_empresa inner join tb_endereco on tb_empresa.id = tb_endereco.id_empresa where tb_empresa.id = ".$id);
         $result = mysqli_fetch_array($query)
     ?>
-    <div class="container cadastro-info">
+    <div class="container content">
+        <div class="row">
+            <div class="col-sm-4"><img class="logomarca" src="../images/sebrae-logo.png"></div>
+            <div class="col-sm-8"><h2 class="fonte-titulos" style="line-height:90px;">Formulário de Atualização das Empresas</h2></div>
+        </div>
+        <hr>
+        <a href="index.php"><button type="submit" class="btn btn-lg btn-info" id="enviar">Home</button></a>
+        <hr>
         <form action="acoes.php" method="post">
-            <input type="hidden" name="tipo_formulario" value="3">
+            <input type="hidden" name="acao" value="3">
             <input type="hidden" name="id" value="<?php echo $id; ?>">
             <div class="row">
+            <div class="col-sm-6">
+                <h4>Dados da Empresa</h4>
+                    <hr>
+                    <div class="form-group">
+                        <label for="cnpj">CNPJ:</label>
+                        <input type="text" class="form-control" id="cnpj" name="cnpj" value="<?php echo $result['cnpj']; ?>" placeholder="Digite o CNPJ" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="nome">Razão Social:</label>
+                        <input type="text" class="form-control" id="nome" name="nome" value="<?php echo $result['razao_social']; ?>" placeholder="Digite o nome da empresa" required>
+                    </div>  
+                    <div class="form-group">
+                        <label for="nome_fantasia">Nome Fantasia:</label>
+                        <input type="text" class="form-control" id="nome_fantasia" name="nome_fantasia" value="<?php echo $result['nome_fantasia']; ?>" placeholder="Digite o nome fantasaia da empresa" required>
+                    </div>  
+                    <div class="form-group">
+                        <label for="tel_fixo">Telefone Fixo:</label>
+                        <input type="text" class="form-control" id="tel_fixo" name="tel_fixo" value="<?php echo $result['tel_fixo']; ?>" placeholder="Digite o telefone fixo" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="tel_celular">Telefone Celular:</label>
+                        <input type="text" class="form-control" id="tel_celular" name="tel_celular" value="<?php echo $result['tel_celular']; ?>" placeholder="Digite o telefone fixo" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="responsavel"><b>Responsável:</b></label>
+                        <input type="text" class="form-control" id="responsavel" name="responsavel" value="<?php echo $result['responsavel']; ?>" placeholder="Digite o nome do responsável (Opcional)">
+                    </div>
+                    <div class="form-group">
+                        <label for="email"><b>E-Mail:</b></label>
+                        <input type="text" class="form-control" id="email" name="email" value="<?php echo $result['email']; ?>" placeholder="Digite o E-mail (Opcional)">
+                    </div>        
+                </div>
                 <div class="col-sm-6">
                     <h4>Endereço da Empresa</h4>
                     <hr>
@@ -40,7 +79,15 @@ include ("../connection.php");
                     </div>
                     <div class="form-group">
                         <label for="numero">Número:</label>
-                        <input type="text" class="form-control" id="numero" name="numero" value="<?php echo $result['nr']; ?>"  placeholder="Digite o número" required>
+                        <input type="text" class="form-control" id="numero" name="numero" value="<?php echo $result['numero']; ?>" placeholder="Digite o número" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="bairro"><b>Bairro:</b></label>
+                        <input type="text" class="form-control" id="bairro" name="bairro" value="<?php echo $result['bairro']; ?>" placeholder="Digite o nome do bairro (Opcional)">
+                    </div>
+                    <div class="form-group">
+                        <label for="complemento"><b>Complemento:</b></label>
+                        <input type="text" class="form-control" id="complemento" name="complemento" value="<?php echo $result['complemento']; ?>" placeholder="Digite o complemento (Opcional)">
                     </div>
                     <div class="form-group">
                         <label for="cidade">Cidade:</label>
@@ -56,30 +103,6 @@ include ("../connection.php");
                         <label for="pais">Pais:</label>
                         <input type="text" class="form-control" id="pais" name="pais" value="<?php echo $result['pais']; ?>" placeholder="Digite o nome do pais" required>
                     </div> 
-                </div>
-                <div class="col-sm-6">
-                    <h4>Dados da Empresa</h4>
-                    <hr>
-                    <div class="form-group">
-                        <label for="cnpj">CNPJ:</label>
-                        <input type="text" class="form-control" id="cnpj" name="cnpj" value="<?php echo $result['cnpj']; ?>" placeholder="Digite o CNPJ" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="nome">Nome:</label>
-                        <input type="text" class="form-control" id="nome" name="nome" value="<?php echo $result['nome']; ?>" placeholder="Digite o nome da empresa" required>
-                    </div>  
-                    <div class="form-group">
-                        <label for="nome_fantasia">Nome Fantasia:</label>
-                        <input type="text" class="form-control" id="nome_fantasia" name="nome_fantasia" value="<?php echo $result['nome_fantasia']; ?>" placeholder="Digite o nome fantasaia da empresa" required>
-                    </div>  
-                    <div class="form-group">
-                        <label for="tel_fixo">Telefone Fixo:</label>
-                        <input type="text" class="form-control" id="tel_fixo" name="tel_fixo" value="<?php echo $result['tel_fixo']; ?>" placeholder="Digite o telefone fixo" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="tel_celular">Telefone Celular:</label>
-                        <input type="text" class="form-control" id="tel_celular" name="tel_celular" value="<?php echo $result['tel_celular']; ?>" placeholder="Digite o telefone fixo" required>
-                    </div>      
                 </div>
             </div>
             <hr>

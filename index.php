@@ -22,10 +22,14 @@ include ("funcoes.php");
 
 </head>
 <body>
-<h1>Google Maps</h1>
-    <div id="map"></div>
+<div class="row" style="margin: 10px 0 10px 0;">
+<div class="col-sm-5"></div>
+<div class="col-sm-4"><img class="logomarca" src="./images/sebrae-logo.png"></div>
+<div class="col-sm-3"></div>
+</div>
+<div id="map"></div>
     <script type="text/javascript">
-        var delay = 50;
+        var delay = 25;
         var infowindow = new google.maps.InfoWindow();
         var latlng = new google.maps.LatLng(-7.2357477, -35.8878219);
         var mapOptions = {
@@ -78,7 +82,7 @@ include ("funcoes.php");
         <?php 
             $sql = mysqli_query($conn, "select * from tb_endereco");
             while ($result = mysqli_fetch_array($sql)) {
-                $endereco = $result['rua'].','.$result['nr'].','.$result['cidade'].','.$result['estado'].','.$result['pais'];
+                $endereco = $result['rua'].','.$result['numero'].','.$result['cidade'].','.$result['estado'].','.$result['pais'];
                 echo "'".(string) $endereco."',";
             }
         ?>
@@ -89,7 +93,7 @@ include ("funcoes.php");
             $sql = mysqli_query($conn, "select * from tb_empresa");
             $count = 1;
             while ($result = mysqli_fetch_array($sql)) {
-                $dados = "<br><b>".$count." - ".strtoupper($result['nome'])."</b><br><b>CNPJ: </b>".mask($result['cnpj'],'##.###.###/####-##')."</div><br><b>Tel. Fixo: </b>".mask($result['tel_fixo'], '####-####')."<br><b>Tel.Celular: </b>".mask($result['tel_celular'], '(##) #####-####')."<br>";
+                $dados = "<br><b>".$count." - ".strtoupper($result['razao_social'])."</b><br><b>CNPJ: </b>".mask($result['cnpj'],'##.###.###/####-##')."</div><br><b>Tel. Fixo: </b>".mask($result['tel_fixo'], '####-####')."<br><b>Tel.Celular: </b>".mask($result['tel_celular'], '(##) #####-####')."<br>";
                 echo "'".(string) $dados."',";
                 $count+=1;
             }
