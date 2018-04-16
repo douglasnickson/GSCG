@@ -26,11 +26,14 @@ if (isset($_SESSION['logado'])){
 <?php 
     if (isset($_SESSION['logado'])){
 ?>
-    <div class="container cadastro-info">
-        <h4 style="text-align:center;">Seja bem vindo ao Sistema ADM.</h4>		
+    <div class="container content">
+        <div class="row">
+            <div class="col-sm-4"><img class="logomarca" src="../images/sebrae-logo.png"></div>
+            <div class="col-sm-8"><h2 class="fonte-titulos" style="line-height:90px;">Sistema de Gerencimanto do Google Maps</h2></div>
+        </div>
         <hr>
         <a href="cadastrar.php"><button type="submit" class="btn btn-lg btn-info" id="enviar">Cadastrar Empresa</button></a>
-        <a href="acoes.php?sair=ok"><button type="submit" class="btn btn-lg btn-success" id="enviar">Sair do Sistema</button></a>
+        <a href="acoes.php?acao=5"><button type="submit" class="btn btn-lg btn-success" id="enviar">Sair do Sistema</button></a>
         <br><br>	
         <table class="table table-sm table-hover admin-home" style="color: grey;">
             <tr>

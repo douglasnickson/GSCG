@@ -5,20 +5,18 @@ html, body{
 }
 
 body {
-
 	background: linear-gradient(10deg,#fff,#f2f2f2);
 	background-attachment: fixed;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     color:slategrey;
-
 }
 
-.admin-home a {
+.a {
 	color: grey;
 	font-family: Helvetica,Arial,sans-serif;
 }
 
-.admin-home a:hover {
+.a:hover {
 	text-decoration: none;
 }
 
@@ -27,7 +25,7 @@ body {
 	width:100%;
 }
 
-.cadastro-info {
+.content {
 	margin-top: 10px;
 	border: 1px solid #ccc;
 	background-color: white;
@@ -35,7 +33,11 @@ body {
 	padding: 20px;
 }
 
-.cadastro-info h4{
+.fonte-titulos {
 	text-align: center;
     color: gray;
+}
+
+.logomarca {
+	width: 200px;
 }

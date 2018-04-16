@@ -22,59 +22,80 @@ session_start();
     <?php 
         if (isset($_SESSION['logado'])){
     ?>
-    <div class="container cadastro-info">
+    <div class="container content">
+        <div class="row">
+            <div class="col-sm-4"><img class="logomarca" src="../images/sebrae-logo.png"></div>
+            <div class="col-sm-8"><h2 class="fonte-titulos" style="line-height:90px;">Formulário de Cadastro das Empresas</h2></div>
+        </div>
+        <hr>
         <form action="acoes.php" method="post">
-            <input type="hidden" name="tipo_formulario" value="2">
+            <input type="hidden" name="acao" value="2">
             <div class="row">
                 <div class="col-sm-6">
-                    <h4>Endereço da Empresa</h4>
+                    <h4><b>Dados da Empresa</b></h4>
                     <hr>
                     <div class="form-group">
-                        <label for="rua">Rua:</label>
+                        <label for="cnpj"><b>CNPJ:</b></label>
+                        <input type="text" class="form-control" id="cnpj" name="cnpj" placeholder="Digite o CNPJ" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="nome"><b>Razão Social:</b></label>
+                        <input type="text" class="form-control" id="nome" name="nome" placeholder="Digite o nome da empresa" required>
+                    </div>  
+                    <div class="form-group">
+                        <label for="nome_fantasia"><b>Nome Fantasia:</b></label>
+                        <input type="text" class="form-control" id="nome_fantasia" name="nome_fantasia"  placeholder="Digite o nome fantasaia da empresa (Opcional)">
+                    </div>  
+                    <div class="form-group">
+                        <label for="tel_fixo"><b>Telefone Fixo:</b></label>
+                        <input type="text" class="form-control" id="tel_fixo" name="tel_fixo" placeholder="Digite o telefone fixo (Opcional)">
+                    </div>
+                    <div class="form-group">
+                        <label for="tel_celular"><b>Telefone Celular:</b></label>
+                        <input type="text" class="form-control" id="tel_celular" name="tel_celular" placeholder="Digite o telefone fixo (Opcional)">
+                    </div>
+                    <div class="form-group">
+                        <label for="responsavel"><b>Responsável:</b></label>
+                        <input type="text" class="form-control" id="responsavel" name="responsavel" placeholder="Digite o nome do responsável (Opcional)">
+                    </div>
+                    <div class="form-group">
+                        <label for="email"><b>E-Mail:</b></label>
+                        <input type="text" class="form-control" id="email" name="email" placeholder="Digite o E-mail (Opcional)">
+                    </div>      
+                </div>
+                <div class="col-sm-6">
+                    <h4><b>Endereço da Empresa</b></h4>
+                    <hr>
+                    <div class="form-group">
+                        <label for="rua"><b>Rua:</b></label>
                         <input type="text" class="form-control" id="rua" name="rua"  placeholder="Digite o nome da rua" required>
                     </div>
                     <div class="form-group">
-                        <label for="numero">Número:</label>
+                        <label for="numero"><b>Número:</b></label>
                         <input type="text" class="form-control" id="numero" name="numero"  placeholder="Digite o número" required>
                     </div>
                     <div class="form-group">
-                        <label for="cidade">Cidade:</label>
+                        <label for="bairro"><b>Bairro:</b></label>
+                        <input type="text" class="form-control" id="bairro" name="bairro"  placeholder="Digite o nome do bairro (Opcional)">
+                    </div>
+                    <div class="form-group">
+                        <label for="complemento"><b>Complemento:</b></label>
+                        <input type="text" class="form-control" id="complemento" name="complemento"  placeholder="Digite o complemento (Opcional)">
+                    </div>
+                    <div class="form-group">
+                        <label for="cidade"><b>Cidade:</b></label>
                         <input type="text" class="form-control" id="cidade" name="cidade"  placeholder="Digite o nome da cidade" required>
                     </div> 
                     <div class="form-group">
-                        <label for="estado">Estado:</label>
+                        <label for="estado"><b>Estado:</b></label>
                         <select class="custom-select mr-sm-2 mb-2" name="estado" id="estado">
                             <option value="PB">PB</option>
                         </select>
                     </div> 
                     <div class="form-group">
-                        <label for="pais">Pais:</label>
+                        <label for="pais"><b>Pais:</b></label>
                         <input type="text" class="form-control" id="pais" name="pais"  placeholder="Digite o nome do pais" required>
                     </div> 
-                </div>
-                <div class="col-sm-6">
-                    <h4>Dados da Empresa</h4>
-                    <hr>
-                    <div class="form-group">
-                        <label for="cnpj">CNPJ:</label>
-                        <input type="text" class="form-control" id="cnpj" name="cnpj" placeholder="Digite o CNPJ" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="nome">Nome:</label>
-                        <input type="text" class="form-control" id="nome" name="nome" placeholder="Digite o nome da empresa" required>
-                    </div>  
-                    <div class="form-group">
-                        <label for="nome_fantasia">Nome Fantasia:</label>
-                        <input type="text" class="form-control" id="nome_fantasia" name="nome_fantasia"  placeholder="Digite o nome fantasaia da empresa" required>
-                    </div>  
-                    <div class="form-group">
-                        <label for="tel_fixo">Telefone Fixo:</label>
-                        <input type="text" class="form-control" id="tel_fixo" name="tel_fixo" placeholder="Digite o telefone fixo" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="tel_celular">Telefone Celular:</label>
-                        <input type="text" class="form-control" id="tel_celular" name="tel_celular" placeholder="Digite o telefone fixo" required>
-                    </div>      
                 </div>
             </div>
             <hr>

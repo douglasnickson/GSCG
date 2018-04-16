@@ -4,7 +4,7 @@ header('Content-Type: text/html; charset=utf-8');
 //Dados do Banco de Dados
 $host = "localhost";
 $usuario = "root";
-$senha = "";
+$senha = "Douglas13.";
 $banco = "gscg_db";
 
 //Efetuando a conexao

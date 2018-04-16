@@ -41,7 +41,7 @@
                             <h1 data-aos="zoom-in"><img src="../images/logo-login.png"></h1>
                         </a>
 
-                        <p data-aos="zoom-in">SIAVE - Sistema de Acompanhamento das Avaliações dos Eventos</p>
+                        <p data-aos="zoom-in">GSCG - Sistema de Saude</p>
                     </div>
                 </div>
             </div>
@@ -52,17 +52,16 @@
                     <div class="col-md-offset-4 col-md-4">
                         <p data-aos="zoom-in">Entre com suas credenciais abaixo:</p>
                         <form data-aos="zoom-in" action="acoes.php" method="post">
-                            <input type="text" name="login" placeholder="Usuário de rede">
+                            <input type="text" name="login" placeholder="Login">
                             <input type="password" name="senha" placeholder="Senha">
-							<input type="hidden" value="1" id="tipo_formulario" name="tipo_formulario">
+							<input type="hidden" value="1" id="acao" name="acao">
                             <button type="submit">Entrar</button>
                         </form>
 						<br />
 						<!-- Mensagens de Erro ou Sucesso -->
 						<?php 
 						if(isset($_SESSION['erro'])){
-							$msg_erro = $_SESSION['erro'];
-							echo"<p>".$msg_erro."</p>";
+							echo"<p>".$_SESSION['erro']."</p>";
 							unset($_SESSION['erro']);
 						}
 						?>
